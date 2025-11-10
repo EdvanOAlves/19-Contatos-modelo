@@ -5,6 +5,9 @@ export async function lerContatos() {
     return contatos;
 }
 
+export async function lerContatoId(id){
+    const url = `https://bakcend-fecaf-render.onrender.com/contatos/${id}`
+}
 
 export async function criarContato(contato) {
     const url = "https://bakcend-fecaf-render.onrender.com/contatos"
@@ -75,6 +78,7 @@ function limpezaArea(inicio, fim){
     }
 }
 
+// limpezaArea(37, 40);
 
 
 // 39111213141516

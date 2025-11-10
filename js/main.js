@@ -23,6 +23,7 @@ const inputEmail = document.getElementById('email');
 const inputCelular = document.getElementById('celular');
 const inputEndereco = document.getElementById('endereco');
 const inputCidade = document.getElementById('cidade');
+const inputFoto = document.getElementById('foto')
 
 const carregarContato = function (srcContato) {
     // Iniciando elementos
@@ -57,6 +58,7 @@ const carregarLista = function () {
 
 function cadastrarContato() {
     const contato = {
+        // contato : preview.,
         nome : inputNome.value,
         celular : inputCelular.value,
         email : inputEmail.value,
