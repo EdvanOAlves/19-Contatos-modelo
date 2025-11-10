@@ -53,13 +53,19 @@ async function atualizarContato(id, contato) {
 }
 
 const verdadeiroContato = {
-    "nome": "Edvan Alves",
-    "celular": "11 9 4002 8922",
-    "foto": "https://i.ebayimg.com/images/g/x6IAAOSwl0ZkZ9Ol/s-l1200.jpg",
-    "email": "edvansememailbrow@gmail.com",
-    "endereco": "Rua Rua"
 }
 
+async function cleanUp(){
+    contatos.array.forEach(element => {
+        if (element.nome == undefined){
+            deletarContato(element.id);
+        }
+    });
+}
+// cleanUp();
+
+
+// 39111213141516
 // criarContato(novoContato);
 // criarContato(verdadeiroContato);
 

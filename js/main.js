@@ -6,11 +6,7 @@ const dados = await lerContatos();
 
 const container = document.getElementById('container');
 
-{/* <div class="card-contato">
-            <img src="./img/avatar1.avif" alt="">
-            <h3>Ana Clara</h3>
-            <p>(11) 91234002</p>
-        </div> */}
+
 
 const carregarContato = function(srcContato){
     // Iniciando elementos
@@ -23,13 +19,19 @@ const carregarContato = function(srcContato){
     cardContato.classList.add('card-contato');
 
     //Importando conteudo
-    contatoImg.src = srcContato.foto;
     contatoNome.textContent = srcContato.nome;
     contatoNumero.textContent = srcContato.celular;
+    // Tratativa de imagem
+    if (srcContato.foto == undefined){
+        srcContato.foto = "https://icon-library.com/images/default-profile-icon/default-profile-icon-6.jpg";
+    }
+    contatoImg.src = srcContato.foto;
     
     //Append
     container.appendChild(cardContato);
-    cardContato.appendChild(contatoImg, contatoNome, contatoNumero);
+    cardContato.appendChild(contatoImg);
+    cardContato.appendChild(contatoNome);
+    cardContato.appendChild(contatoNumero);
 }
 
 const carregarLista = function(){
