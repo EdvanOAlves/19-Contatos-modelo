@@ -52,15 +52,6 @@ async function atualizarContato(id, contato) {
     return (await response).ok;
 }
 
-const novoContato = {
-    "nome": "Keys",
-    "celular": "n/a",
-    "foto": "https://i.pinimg.com/736x/98/62/99/98629953578bf8905079d4a2dfcc407f.jpg",
-    "email": "thekeysfromthe8@sbt.com",
-    "endereco": "vila, 8",
-    "cidade": "Acapulco"
-}
-
 const verdadeiroContato = {
     "nome": "Edvan Alves",
     "celular": "11 9 4002 8922",
@@ -69,6 +60,6 @@ const verdadeiroContato = {
     "endereco": "Rua Rua"
 }
 
-criarContato(novoContato);
+// criarContato(novoContato);
 // criarContato(verdadeiroContato);
 
