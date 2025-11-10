@@ -2,12 +2,11 @@ export async function lerContatos() {
     const url = "https://bakcend-fecaf-render.onrender.com/contatos"
     const response = await fetch(url);
     const contatos = await response.json();
-    console.log(contatos);
     return contatos;
 }
 
 
-async function criarContato(contato) {
+export async function criarContato(contato) {
     const url = "https://bakcend-fecaf-render.onrender.com/contatos"
 
     const options = {
@@ -19,8 +18,6 @@ async function criarContato(contato) {
     }
 
     const response = await fetch(url, options);
-
-    console.log(response.ok);
 
     return response.ok;
 }
@@ -48,14 +45,22 @@ async function atualizarContato(id, contato) {
         body: JSON.stringify(contato)
     }
     const response = fetch(url, options)
-    console.log(response.ok);
     return (await response).ok;
 }
 
 const verdadeiroContato = {
+    "nome": "",
+    "celular": "",
+    "foto": "",
+    "email": "",
+    "endereco": "",
+    "cidade": ""
+
 }
 
 async function cleanUp(){
+    const contatos = await lerContatos();
+    console.log(contatos)
     contatos.array.forEach(element => {
         if (element.nome == undefined){
             deletarContato(element.id);
@@ -63,6 +68,13 @@ async function cleanUp(){
     });
 }
 // cleanUp();
+
+function limpezaArea(inicio, fim){
+    for (let i = inicio ; i < fim; i++){
+        deletarContato(i)
+    }
+}
+
 
 
 // 39111213141516
