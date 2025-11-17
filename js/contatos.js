@@ -5,8 +5,11 @@ export async function lerContatos() {
     return contatos;
 }
 
-export async function lerContatoId(id){
+export async function lerContatoId(id) {
     const url = `https://bakcend-fecaf-render.onrender.com/contatos/${id}`
+    const response = await fetch(url);
+    const contato = await response.json();
+    return contato;
 }
 
 export async function criarContato(contato) {
@@ -61,24 +64,24 @@ const verdadeiroContato = {
 
 }
 
-async function cleanUp(){
+async function cleanUp() {
     const contatos = await lerContatos();
-    console.log(contatos)
-    contatos.array.forEach(element => {
-        if (element.nome == undefined){
-            deletarContato(element.id);
+    for (const contato of contatos) {
+        if (contato.nome == undefined || contato.nome == null) {
+            console.log(contato);
+            await deletarContato(contato.id)
         }
-    });
-}
+    }
+};
+
 // cleanUp();
 
-function limpezaArea(inicio, fim){
-    for (let i = inicio ; i < fim; i++){
+function limpezaArea(inicio, fim) {
+    for (let i = inicio; i < fim; i++) {
         deletarContato(i)
     }
 }
 
-// limpezaArea(37, 40);
 
 
 // 39111213141516

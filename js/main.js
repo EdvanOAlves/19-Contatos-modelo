@@ -1,8 +1,7 @@
 'use strict'
 
-// Requisição de dados
-import { criarContato, lerContatos } from "./contatos.js"
-const dados = await lerContatos();
+// Importando script
+import { criarContato, lerContatos } from "./contatos.js";
 
 const container = document.getElementById('container');
 const main = document.getElementById('main');
@@ -23,7 +22,8 @@ const inputEmail = document.getElementById('email');
 const inputCelular = document.getElementById('celular');
 const inputEndereco = document.getElementById('endereco');
 const inputCidade = document.getElementById('cidade');
-const inputFoto = document.getElementById('foto')
+const inputFoto = document.getElementById('foto');
+const previewImage = document.getElementById('preview-image')
 
 const carregarContato = function (srcContato) {
     // Iniciando elementos
@@ -49,14 +49,33 @@ const carregarContato = function (srcContato) {
     cardContato.appendChild(contatoImg);
     cardContato.appendChild(contatoNome);
     cardContato.appendChild(contatoNumero);
+
+    //EventListener
+    cardContato.addEventListener('click', () => lerContato(srcContato));
 }
 
-const carregarLista = function () {
-    console.log(dados)
+const lerContato = function(srcContato){
+    console.log("vambora ")
+    abrirFormulario();
+    inputNome.value = srcContato.nome;
+    inputNome.disabled = true; 
+    inputEmail.value = srcContato.email;
+    inputEmail.disabled = srcContato.email;
+    inputCelular.value = srcContato.celular;
+    inputCelular.disabled = srcContato.celular;
+    inputEndereco.value = srcContato.endereco;
+    inputEndereco.disabled = srcContato.endereco;
+    inputCidade.value = srcContato.cidade;
+    inputCidade.disabled = srcContato.cidade;
+}
+
+const carregarLista = async function () {
+    container.replaceChildren();
+    const dados = await lerContatos();
     dados.forEach(carregarContato);
 }
 
-function cadastrarContato() {
+async function cadastrarContato() {
     const contato = {
         // contato : preview.,
         nome : inputNome.value,
@@ -66,7 +85,7 @@ function cadastrarContato() {
         cidade : inputCidade.value
     }
     console.log(contato);
-    criarContato(contato);
+    await criarContato(contato);
     fecharFormulario();
 }
 
